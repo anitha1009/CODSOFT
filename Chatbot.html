@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rule-Based Chatbot</title>
+</head>
+<body>
+    <h2>Rule-Based Chatbot</h2>
+
+    <input type="text" id="userInput" placeholder="Type your message">
+    <button onclick="chat()">Send</button>
+
+    <p id="chatOutput"></p>
+
+    <script>
+        function chat() {
+            let input = document.getElementById("userInput").value.toLowerCase();
+            let output = "";
+
+            if (input === "hello" || input === "hi") {
+                output = "Hello! How can I help you?";
+            } 
+            else if (input.includes("your name")) {
+                output = "I am a simple rule-based chatbot.";
+            } 
+            else if (input.includes("help")) {
+                output = "I can answer basic questions like greetings.";
+            } 
+            else if (input === "bye") {
+                output = "Goodbye! Have a nice day 😊";
+            } 
+            else {
+                output = "Sorry, I didn't understand that.";
+            }
+
+            document.getElementById("chatOutput").innerHTML = "Chatbot: " + output;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recommendation System</title>
+</head>
+<body>
+    <h2>Movie Recommendation System</h2>
+
+    <select id="genre">
+        <option value="action">Action</option>
+        <option value="romance">Romance</option>
+        <option value="sci-fi">Sci-Fi</option>
+    </select>
+
+    <button onclick="recommend()">Recommend</button>
+
+    <ul id="result"></ul>
+
+    <script>
+        const movies = {
+            action: ["Avengers", "John Wick", "Mad Max"],
+            romance: ["Titanic", "The Notebook"],
+            "sci-fi": ["Inception", "Interstellar"]
+        };
+
+        function recommend() {
+            let genre = document.getElementById("genre").value;
+            let list = movies[genre];
+            let result = document.getElementById("result");
+            result.innerHTML = "";
+
+            list.forEach(movie => {
+                let li = document.createElement("li");
+                li.innerText = movie;
+                result.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>
+
+    

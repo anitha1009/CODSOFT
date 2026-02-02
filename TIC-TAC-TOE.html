@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tic Tac Toe AI</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+        }
+
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 80px);
+            grid-template-rows: repeat(3, 80px);
+            gap: 5px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        button {
+            width: 80px;
+            height: 80px;
+            font-size: 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Tic Tac Toe</h2>
+    <p>You: X | AI: O</p>
+
+    <div class="board" id="board"></div>
+    <h3 id="result"></h3>
+
+    <script>
+        let board = ["", "", "", "", "", "", "", "", ""];
+        let gameOver = false;
+
+        function createBoard() {
+            for (let i = 0; i < 9; i++) {
+                let btn = document.createElement("button");
+                btn.id = i;
+                btn.onclick = () => playerMove(i);
+                document.getElementById("board").appendChild(btn);
+            }
+        }
+
+        function playerMove(i) {
+            if (board[i] === "" && !gameOver) {
+                board[i] = "X";
+                document.getElementById(i).innerText = "X";
+                if (!checkWinner()) aiMove();
+            }
+        }
+
+        function aiMove() {
+            for (let i = 0; i < 9; i++) {
+                if (board[i] === "") {
+                    board[i] = "O";
+                    document.getElementById(i).innerText = "O";
+                    break;
+                }
+            }
+            checkWinner();
+        }
+
+        function checkWinner() {
+            const wins = [
+                [0,1,2],[3,4,5],[6,7,8],
+                [0,3,6],[1,4,7],[2,5,8],
+                [0,4,8],[2,4,6]
+            ];
+
+            for (let w of wins) {
+                let [a,b,c] = w;
+                if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+                    document.getElementById("result").innerText = board[a] + " Wins!";
+                    gameOver = true;
+                    return true;
+                }
+            }
+
+            if (!board.includes("")) {
+                document.getElementById("result").innerText = "Draw!";
+                gameOver = true;
+                return true;
+            }
+            return false;
+        }
+
+        createBoard();
+    </script>
+
+</body>
+</html>
+                                                                                                                            
